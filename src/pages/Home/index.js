@@ -1,12 +1,12 @@
 import React from "react";
 import Icon from "components/Icon";
-import "./111.scss";
+import styles from "./index.module.scss";
 
 export default function Home() {
   return (
-    <div>
+    <div className={styles.root}>
       Home
-      <Icon type="icon-Cellular" className={"big"}></Icon>
+      <Icon type="iconfanhui" className={"big"}></Icon>
     </div>
   );
 }

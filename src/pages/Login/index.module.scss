@@ -1,0 +1,44 @@
+.root {
+  :global {
+    .iconfanhui {
+      font-size: 5.3333vw;
+    }
+
+    .content {
+      padding: 0 8.5333vw;
+
+      h3 {
+        padding: 8vw 0;
+        font-size: 6.4vw;
+      }
+
+      .input-item {
+        position: relative;
+
+        &:first-child {
+          margin-bottom: 4.5333vw;
+        }
+      }
+
+      .validate {
+        position: absolute;
+
+        color: #ee0a24;
+        font-size: 3.2vw;
+      }
+
+      .login-btn {
+        width: 100%;
+        height: 13.3333vw;
+        margin-top: 10.1333vw;
+        border-radius: 2.1333vw;
+        border: 0;
+        color: #fff;
+        background: linear-gradient(315deg, #fe4f4f, #fc6627);
+      }
+      .disabled {
+        background: linear-gradient(315deg, #ff9999, #ffa179);
+      }
+    }
+  }
+}
