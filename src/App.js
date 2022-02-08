@@ -14,7 +14,7 @@ export default function App() {
       <div className="app">
         <Suspense fallback={<div>loading...</div>}>
           <Routes>
-            <Route path="/" element={<Navigate to="/home" />} />
+            <Route path="/*" element={<Navigate to="/home" />} />
             <Route path="/login" element={<Login />} />
             <Route path="/home" element={<Home />} />
           </Routes>

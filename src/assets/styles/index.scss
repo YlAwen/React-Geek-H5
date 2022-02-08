@@ -8,6 +8,7 @@ body {
   color: #333;
   font-family: PingFangSC;
   background-color: #fff;
+  font-size: 4.2667vw;
 }
 
 html,
@@ -28,7 +29,7 @@ button {
   display: block;
   outline: 0 none;
   padding: 0;
-  border-radius: 8px;
+  border-radius: 2.1333vw;
   -webkit-appearance: none;
   box-sizing: border-box;
   text-align: center;
@@ -80,6 +81,6 @@ textarea {
 
 /* Navbar icon */
 .am-navbar-left {
-  font-size: 20px;
+  font-size: 5.3333vw;
   color: #999;
 }
