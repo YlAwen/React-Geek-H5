@@ -1,9 +1,9 @@
 import axios from "axios";
 import { Toast } from "antd-mobile";
-import { getTokenInfo } from "./storage";
-
+import { getTokenInfo, removeTokenInfo } from "./storage";
+const baseURL = "http://geek.itheima.net/v1_0/";
 const http = axios.create({
-  baseURL: "http://geek.itheima.net/v1_0/",
+  baseURL,
   timeout: 5000,
 });
 
@@ -30,16 +30,30 @@ http.interceptors.response.use(
     // 对响应数据做点什么
     return response.data;
   },
-  function (error) {
+  async function (error, config) {
     // 超出 2xx 范围的状态码都会触发该函数。
     // 对响应错误做点什么
+
+    // 网络错误
     if (!error.response) {
       Toast.show({
         content: "网络繁忙，请稍后重试",
       });
-    } else {
-      return Promise.reject(error.response);
+      return Promise.reject(error);
     }
+    // 网络正常
+    // 不是token失效
+    if (error.response.status !== 401) {
+      Toast.show({
+        content: error.response.data.message,
+      });
+      return Promise.reject(error);
+    }
+
+    Toast.show({
+      content: "身份信息过期，请重新登录！",
+    });
+    removeTokenInfo();
   }
 );
 

@@ -6,6 +6,8 @@ export const login = (state = initValue, action) => {
   switch (type) {
     case "login/token":
       return payload;
+    case "profile/user_logout":
+      return {};
     default:
       return state;
   }

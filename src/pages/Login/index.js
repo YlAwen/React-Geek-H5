@@ -7,8 +7,9 @@ import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { sendCode, login } from "store/actions/login";
 import { Toast } from "antd-mobile";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 export default function Login() {
+  const location = useLocation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [time, setTime] = useState(0);
@@ -26,12 +27,13 @@ export default function Login() {
           icon: "success",
           content: "登录成功",
         });
-        // 跳转首页
-        navigate("/home");
+        // 跳转
+        navigate(location.state.from.pathname || "/home");
+        // navigate("/home");
       } catch (error) {
         Toast.show({
           icon: "fail",
-          content: error.data.message,
+          content: !error.data.message || "",
         });
       }
     },
@@ -83,7 +85,7 @@ export default function Login() {
   return (
     <div className={styles.root}>
       {/* 标题 */}
-      <NavBar>登录</NavBar>
+      <NavBar leftClick={() => navigate(-1)}>登录</NavBar>
       {/* 表单内容 */}
       <div className="content">
         <h3>短信登录</h3>

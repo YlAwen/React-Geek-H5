@@ -1,5 +1,5 @@
 import request from "utils/request";
-import { setTokenInfo } from "utils/storage";
+import { setTokenInfo, removeTokenInfo } from "utils/storage";
 
 export const saveToken = (payload) => {
   return {
@@ -31,5 +31,15 @@ export const login = (data) => {
     dispatch(saveToken(res.data));
     // token保存至本地
     setTokenInfo(res.data);
+  };
+};
+
+// 退出登录
+export const logout = () => {
+  return (dispatch) => {
+    removeTokenInfo();
+    dispatch({
+      type: "login/logout",
+    });
   };
 };

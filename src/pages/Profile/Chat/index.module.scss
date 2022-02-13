@@ -1,0 +1,94 @@
+@import "../../../assets/styles/hairline.scss";
+
+.root {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12.2667vw 0 13.3333vw 0;
+
+  :global {
+    .fixed-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    .chat-list {
+      height: 100%;
+      overflow-y: scroll;
+      padding: 4vw 4.2667vw;
+    }
+
+    .chat-item {
+      display: flex;
+      margin-bottom: 3.2vw;
+
+      img {
+        width: 8.5333vw;
+        height: 8.5333vw;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+
+      .icon {
+        width: 8.5333vw;
+        height: 8.5333vw;
+        margin-right: 2.1333vw;
+      }
+
+      .message {
+        max-width: 67.7333vw;
+        padding: 3.2vw 2.1333vw;
+        line-height: 1.4;
+        border-radius: 1.3333vw;
+        font-size: 3.7333vw;
+        background-color: #f7f8fa;
+      }
+    }
+
+    .user {
+      flex-direction: row-reverse;
+
+      .icon,
+      img {
+        margin-right: 0;
+        margin-left: 2.1333vw;
+      }
+    }
+
+    .input-footer {
+      position: fixed;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      height: 13.3333vw;
+      padding: 1.8667vw 4.2667vw;
+
+      .input {
+        height: 9.6vw;
+        min-height: 0;
+        padding-left: 7.2vw;
+        border-radius: 4.8vw;
+        background-color: #f7f8fa;
+        font-size: 3.7333vw;
+        &::placeholder {
+          font-size: 3.7333vw;
+        }
+      }
+      .no-border {
+        @include hairline-remove(bottom);
+      }
+
+      .icon {
+        position: absolute;
+        top: 50%;
+        margin-top: -1.7333vw;
+        margin-left: 2.6667vw;
+        font-size: 3.4667vw;
+      }
+    }
+  }
+}

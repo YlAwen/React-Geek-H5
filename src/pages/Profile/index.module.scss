@@ -1,0 +1,154 @@
+.root {
+  height: 100%;
+  background-color: #f8f8f8;
+
+  :global {
+    .link {
+      color: #fff;
+    }
+    .profile {
+      height: 77.3333vw;
+      padding: 0 4vw;
+      border-bottom-left-radius: 133.3333vw 32vw;
+      border-bottom-right-radius: 133.3333vw 32vw;
+      background: linear-gradient(318deg, #b2b5db 2%, #565482 85%, #494675 97%);
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      padding: 10.6667vw 0 4vw;
+
+      .user-name {
+        flex: 1;
+        margin-left: 4.8vw;
+        font-size: 6.4vw;
+        font-weight: 400;
+        color: #fff;
+      }
+      a {
+        line-height: 4.2667vw;
+        color: #fff;
+        font-size: 3.2vw;
+
+        &:visited {
+          color: #fff;
+        }
+      }
+
+      .icon {
+        width: 2.4vw;
+        height: 4.2667vw;
+        vertical-align: middle;
+      }
+    }
+
+    .avatar {
+      width: 13.3333vw;
+      height: 13.3333vw;
+      border: 0.8vw solid rgba(255, 255, 255, 0.16);
+      border-radius: 50%;
+      overflow: hidden;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+
+    .read-info {
+      display: flex;
+      align-items: center;
+      width: 37.6vw;
+      height: 8vw;
+      padding: 1.3333vw;
+      border-radius: 4vw;
+      font-size: 3.2vw;
+      color: #f7f8fa;
+      background: linear-gradient(319deg, #585089 0%, #2c2a6b 98%);
+
+      .icon {
+        margin-right: 1.3333vw;
+        font-size: 5.3333vw;
+      }
+
+      span {
+        display: inline-block;
+        margin: 0 0.8vw;
+        font-size: 4.8vw;
+        font-weight: bold;
+        color: #ffbc3d;
+      }
+    }
+
+    .count-list {
+      display: flex;
+      justify-content: space-between;
+      padding: 5.3333vw 0 4vw 0;
+
+      .count-item {
+        flex: 1;
+        text-align: center;
+        font-size: 3.4667vw;
+        color: #fff;
+
+        p {
+          &:first-child {
+            height: 3.7333vw;
+            margin-bottom: 1.6vw;
+          }
+        }
+      }
+    }
+
+    .user-links {
+      display: flex;
+
+      padding: 5.3333vw 0;
+      font-size: 3.2vw;
+      text-align: center;
+      background-color: #fff;
+      border-radius: 2.6667vw;
+      color: #333;
+
+      .link-item {
+        flex: 1;
+      }
+
+      .icon {
+        margin-bottom: 2.9333vw;
+        font-size: 6.1333vw;
+      }
+    }
+
+    .more-service {
+      // height: 32vw;
+      margin: 2.9333vw 4.2667vw 0 4.2667vw;
+      border-radius: 2.6667vw;
+      background-color: #fff;
+
+      h3 {
+        padding: 4vw;
+        font-size: 4.5333vw;
+        color: #333;
+      }
+
+      .service-list {
+        display: flex;
+      }
+
+      .service-item {
+        width: 25%;
+        padding-bottom: 5.3333vw;
+        text-align: center;
+        font-size: 3.4667vw;
+      }
+
+      .icon {
+        margin-bottom: 2.9333vw;
+        font-size: 5.8667vw;
+      }
+    }
+  }
+}

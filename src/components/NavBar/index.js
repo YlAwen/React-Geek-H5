@@ -1,20 +1,23 @@
 import React from "react";
 import styles from "./index.module.scss";
 import Icon from "components/Icon";
-import { useNavigate } from "react-router-dom";
-export default function NavBar({ children, extra }) {
-  let navigate = useNavigate();
-  const back = () => {
-    // 跳回上一页
-    navigate(-1);
-  };
+export default function NavBar({
+  children,
+  extra,
+  leftClick,
+  rightClick,
+  rightStyle,
+  className,
+}) {
   return (
-    <div className={styles.root}>
+    <div className={styles.root + " " + className}>
       <div className="left">
-        <Icon type="iconfanhui" onClick={back}></Icon>
+        <Icon type="iconfanhui" onClick={leftClick}></Icon>
       </div>
       <div className="title">{children}</div>
-      <div className="right">{extra}</div>
+      <div className="right" style={rightStyle} onClick={rightClick}>
+        {extra}
+      </div>
     </div>
   );
 }
