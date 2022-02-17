@@ -2,7 +2,7 @@ type Channel = {
   id: number;
   name: string;
 };
-type ArticleList = {
+export type ArticleList = {
   art_id: string;
   title: string;
   aut_id: string;
@@ -11,7 +11,7 @@ type ArticleList = {
   aut_name: string;
   is_top: number;
   cover: {
-    type: string;
+    type: number | string;
     images: string[];
   };
 };

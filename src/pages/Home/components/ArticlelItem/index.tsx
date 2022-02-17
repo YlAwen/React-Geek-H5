@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { ArticleList } from "store/reducers/home";
 import styles from "./index.module.scss";
-
-export default function ArticlelItem({ article }: any) {
+type Props = {
+  article: ArticleList;
+};
+export default function ArticlelItem({ article }: Props) {
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
   useEffect(() => {
@@ -10,15 +14,19 @@ export default function ArticlelItem({ article }: any) {
   }, [article.aut_name, article.pubdate]);
 
   const type = article.cover.type;
+  const navigate = useNavigate();
   // console.log(article);
   return (
-    <div className={styles.root}>
+    <div
+      className={styles.root}
+      onClick={() => navigate("/article/" + article.art_id)}
+    >
       <div className={`article-content ${type === 0 ? "none-mt" : ""}`}>
         <h3>{article.title}</h3>
         {type !== 0 && (
           <div className="article-imgs">
             <div className="article-img-wrapper">
-              <img src={type !== 0 && article.cover.images[0]} alt="" />
+              <img src={type !== 0 ? article.cover.images[0] : ""} alt="" />
             </div>
           </div>
         )}
