@@ -2,19 +2,19 @@ import React, { useState } from "react";
 import NavBar from "components/NavBar";
 import Input from "components/Input";
 import styles from "./index.module.scss";
-import { useFormik } from "formik";
+import { useFormik, FormikValues } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { sendCode, login } from "store/actions/login";
 import { Toast } from "antd-mobile";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, NavigateFunction } from "react-router-dom";
 export default function Login() {
-  const location = useLocation();
+  const location: Location | { pathname: string; state: any } = useLocation();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const navigate: NavigateFunction = useNavigate();
   const [time, setTime] = useState(0);
   // 表单校验
-  const formik = useFormik({
+  const formik: FormikValues = useFormik({
     initialValues: {
       mobile: "",
       code: "",
@@ -28,9 +28,14 @@ export default function Login() {
           content: "登录成功",
         });
         // 跳转
+        const path = location.pathname;
+        if (path === "/login") {
+          navigate("/home/profile");
+          return;
+        }
         navigate(location.state.from.pathname || "/home");
         // navigate("/home");
-      } catch (error) {
+      } catch (error: any) {
         Toast.show({
           icon: "fail",
           content: !error.data.message || "",
@@ -68,7 +73,7 @@ export default function Login() {
             return time - 1;
           });
         }, 1000);
-      } catch (error) {
+      } catch (error: any) {
         // 失败
         Toast.show({
           maskClickable: false,

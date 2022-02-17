@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError, AxiosRequestHeaders } from "axios";
 import { Toast } from "antd-mobile";
 import { getTokenInfo, removeTokenInfo } from "./storage";
 const baseURL = "http://geek.itheima.net/v1_0/";
@@ -9,7 +9,7 @@ const http = axios.create({
 
 // 添加请求拦截器
 http.interceptors.request.use(
-  function (config) {
+  function (config: any) {
     // 在发送请求之前做些什么
     const token = getTokenInfo().token;
     if (token) {
@@ -30,7 +30,7 @@ http.interceptors.response.use(
     // 对响应数据做点什么
     return response.data;
   },
-  async function (error, config) {
+  function (error: AxiosError) {
     // 超出 2xx 范围的状态码都会触发该函数。
     // 对响应错误做点什么
 
@@ -49,10 +49,6 @@ http.interceptors.response.use(
       });
       return Promise.reject(error);
     }
-
-    Toast.show({
-      content: "身份信息过期，请重新登录！",
-    });
     removeTokenInfo();
   }
 );

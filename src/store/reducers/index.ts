@@ -1,11 +1,11 @@
 import { login } from "./login";
 import { profile } from "./profile";
-
-const { combineReducers } = require("redux");
+import { home } from "./home";
+import { combineReducers } from "redux";
 
 const reducer = combineReducers({
   login,
   profile,
+  home,
 });
-
 export default reducer;

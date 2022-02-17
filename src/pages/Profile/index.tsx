@@ -7,22 +7,18 @@ import { getUser } from "store/actions/profile";
 import { useSelector } from "react-redux";
 import { hasToken } from "utils/storage";
 import { Link } from "react-router-dom";
+import { RootState } from "store";
 
 export default function Profile() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user = useSelector((state) => state.profile.user);
+  // 莫名其妙never
+  const user = useSelector((state: RootState | any) => state.profile.user);
   // 获取用户信息;
   useEffect(() => {
     dispatch(getUser());
   }, [dispatch]);
-  const isLogin = () => {
-    if (hasToken()) {
-      return navigate("/home/profile/edit");
-    } else {
-      return navigate("/login");
-    }
-  };
+
   return (
     <div className={styles.root}>
       <div className="profile">
@@ -34,7 +30,12 @@ export default function Profile() {
               alt=""
             />
           </div>
-          <div className="user-name">{user.name || "未登录"}</div>
+          <div
+            className="user-name"
+            onClick={() => (hasToken() ? "" : navigate("/login"))}
+          >
+            {user.name || "未登录"}
+          </div>
           <Link to="/home/profile/edit" className="link">
             个人信息 <Icon type="iconbtn_right" />
           </Link>

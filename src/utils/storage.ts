@@ -1,18 +1,23 @@
+type Token = {
+  token: string;
+  refresh_token: string;
+};
+
 // 用户 Token 的本地缓存键名
 const TOKEN_KEY = "geek-itcast";
 
 /**
  * 从本地缓存中获取 Token 信息
  */
-export const getTokenInfo = () => {
-  return JSON.parse(localStorage.getItem(TOKEN_KEY)) || {};
+export const getTokenInfo = (): Token => {
+  return JSON.parse(localStorage.getItem(TOKEN_KEY) || "{}");
 };
 
 /**
  * 将 Token 信息存入缓存
  * @param {Object} tokenInfo 从后端获取到的 Token 信息
  */
-export const setTokenInfo = (tokenInfo) => {
+export const setTokenInfo = (tokenInfo: Token) => {
   localStorage.setItem(TOKEN_KEY, JSON.stringify(tokenInfo));
 };
 
@@ -26,6 +31,6 @@ export const removeTokenInfo = () => {
 /**
  * 判断本地缓存中是否存在 Token 信息
  */
-export const hasToken = () => {
+export const hasToken = (): boolean => {
   return !!getTokenInfo().token;
 };

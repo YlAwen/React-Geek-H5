@@ -1,0 +1,96 @@
+@import "../../../../assets/styles/hairline.scss";
+
+.root {
+  position: relative;
+  padding: 4vw 0;
+  @include hairline(bottom, #f0f0f0);
+  :global {
+    .article-content {
+      display: flex;
+      align-items: flex-start;
+
+      h3 {
+        flex: 1;
+        padding-right: 2.6667vw;
+        margin-bottom: 2.6667vw;
+        font-weight: normal;
+        line-height: 5.8667vw;
+        font-size: 4.5333vw;
+        word-break: break-all;
+
+        display: -webkit-box;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+
+      .article-img-wrapper {
+        width: 29.3333vw;
+        height: 20vw;
+        overflow: hidden;
+        border-radius: 1.0667vw;
+
+        img {
+          object-fit: cover;
+          height: 100%;
+          width: 100%;
+        }
+      }
+    }
+
+    .article-content.t3 {
+      display: block;
+
+      .article-imgs {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+
+    .article-info {
+      position: relative;
+      // margin-top: 2.6667vw;
+      color: #999;
+      line-height: 5.8667vw;
+      font-size: 3.2vw;
+
+      span {
+        padding-right: 2.6667vw;
+
+        &.close {
+          position: absolute;
+          right: 0;
+          padding-right: 0;
+        }
+      }
+    }
+
+    .none-mt {
+      margin-top: 0;
+
+      h3 {
+        margin-bottom: 1.0667vw;
+      }
+    }
+  }
+}
+
+:global {
+  .adm-tabs-content {
+    padding-bottom: 13.3333vw;
+  }
+
+  .adm-tabs-header {
+    position: sticky;
+    border-bottom: solid 1px var(--adm-border-color);
+    top: 0;
+    z-index: 1;
+    background-color: #fff;
+  }
+  .adm-tabs-content {
+    padding: 0 !important;
+    overflow-y: scroll;
+    height: 580px;
+  }
+}

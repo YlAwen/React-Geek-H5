@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import styles from "./index.module.scss";
 import NavBar from "components/NavBar";
+import { removeAll } from "store/actions/profile";
 import {
   List,
   DatePicker,
@@ -21,18 +22,22 @@ import {
 import { logout } from "store/actions/login";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { RootState } from "store";
 const basicColumns = [
   [
-    { label: "男", value: 0 },
-    { label: "女", value: 1 },
+    { label: "男", value: "0" },
+    { label: "女", value: "1" },
   ],
 ];
-const gender = ["男", "女"];
+const gender = [["男"], ["女"]];
 export default function ProfileEdit() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const fileRef = useRef(null);
-  const userProfile = useSelector((state) => state.profile.userProfile);
+  const fileRef = useRef<HTMLInputElement>(null);
+  // 莫名其妙never
+  const userProfile = useSelector(
+    (state: RootState | any) => state.profile.userProfile
+  );
   const [dateVisible, setDateVisible] = useState(false);
   const [nameVisible, setNameVisible] = useState(false);
   const [introVisible, setIntroVisible] = useState(false);
@@ -40,7 +45,12 @@ export default function ProfileEdit() {
   const [name, setName] = useState(userProfile.name);
   const [intro, setIntro] = useState(userProfile.intro);
   // 编辑用户个人资料
-  const update = (date) => {
+  const update = (date: {
+    name?: string;
+    intro?: string;
+    gender?: any;
+    birthday?: string;
+  }) => {
     // console.log(date);
     setNameVisible(false);
     setIntroVisible(false);
@@ -59,7 +69,7 @@ export default function ProfileEdit() {
     }
   };
   // 更新头像
-  const fileChange = (file) => {
+  const fileChange = (file: any) => {
     const fd = new FormData();
     fd.append("photo", file);
     try {
@@ -82,7 +92,7 @@ export default function ProfileEdit() {
             {/* 列表一：显示头像、昵称、简介 */}
             <List className="profile-list">
               <List.Item
-                onClick={() => fileRef.current.click()}
+                onClick={() => fileRef.current!.click()}
                 arrow
                 extra={
                   <span className="avatar-wrapper">
@@ -96,7 +106,7 @@ export default function ProfileEdit() {
               <input
                 type="file"
                 style={{ display: "none" }}
-                onChange={(e) => fileChange(e.target.files[0])}
+                onChange={(e) => fileChange(e.target.files![0])}
                 ref={fileRef}
               />
               <List.Item
@@ -248,11 +258,12 @@ export default function ProfileEdit() {
                       bold: true,
                       danger: true,
                       onClick() {
-                        navigate("/home");
                         Toast.show({
                           content: "退出成功！",
                         });
                         dispatch(logout());
+                        dispatch(removeAll());
+                        navigate("/home");
                       },
                     },
                   ],

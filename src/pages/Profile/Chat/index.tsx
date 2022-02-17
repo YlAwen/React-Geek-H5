@@ -6,10 +6,11 @@ import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { getTokenInfo } from "utils/storage";
 import styles from "./index.module.scss";
-import io from "socket.io-client";
+import io, { Socket } from "socket.io-client";
 import { Toast } from "antd-mobile";
 import { useDispatch } from "react-redux";
 import { getUser } from "store/actions/profile";
+import { RootState } from "store";
 const Chat = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -20,11 +21,12 @@ const Chat = () => {
     { type: "user", text: "你好" },
   ]);
   const [msg, setMsg] = useState("");
-  const client = useRef(null);
-  const listRef = useRef(null);
-  const user = useSelector((state) => state.profile.user);
+  const client = useRef<Socket | null>(null);
+  const listRef = useRef<HTMLDivElement>(null);
+  // 莫名其妙never
+  const user = useSelector((state: RootState | any) => state.profile.user);
   // 回车
-  const onKeyUp = (e) => {
+  const onKeyUp = (e: React.KeyboardEvent) => {
     if (e.keyCode !== 13) return;
     if (msg.trim() === "") {
       Toast.show({
@@ -34,7 +36,7 @@ const Chat = () => {
       return;
     }
     setMessageList([...messageList, { type: "user", text: msg }]);
-    client.current.emit("message", {
+    client.current!.emit("message", {
       msg,
       timestamp: Date.now(),
     });
@@ -57,7 +59,7 @@ const Chat = () => {
         ];
       });
     });
-    client.current.on("message", (res) => {
+    client.current.on("message", (res: { msg: string }) => {
       setMessageList((messageList) => {
         return [
           ...messageList,
@@ -66,12 +68,12 @@ const Chat = () => {
       });
     });
     return () => {
-      client.current.close();
+      client.current!.close();
     };
   }, [dispatch]);
   // messageList改变
   useEffect(() => {
-    listRef.current.scrollTop = listRef.current.scrollHeight;
+    listRef.current!.scrollTop = listRef.current!.scrollHeight;
   }, [messageList]);
 
   return (
@@ -118,8 +120,10 @@ const Chat = () => {
           className="no-border"
           placeholder="请描述您的问题"
           value={msg}
-          onKeyUp={onKeyUp}
-          onChange={(e) => setMsg(e.target.value)}
+          onKeyUp={(e: React.KeyboardEvent) => onKeyUp(e)}
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setMsg(e.target.value)
+          }
         />
         <Icon type="iconbianji" />
       </div>

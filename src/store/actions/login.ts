@@ -1,7 +1,11 @@
 import request from "utils/request";
 import { setTokenInfo, removeTokenInfo } from "utils/storage";
-
-export const saveToken = (payload) => {
+import { Dispatch } from "redux";
+type Token = {
+  token: string;
+  refresh_token: string;
+};
+export const saveToken = (payload: Token) => {
   return {
     type: "login/token",
     payload,
@@ -9,9 +13,9 @@ export const saveToken = (payload) => {
 };
 
 // 发送短信验证码
-export const sendCode = (mobile) => {
+export const sendCode = (mobile: string) => {
   return async () => {
-    const res = await request({
+    await request({
       url: `/sms/codes/${mobile}`,
       method: "get",
     });
@@ -20,8 +24,8 @@ export const sendCode = (mobile) => {
 };
 
 // 用户认证（登录注册）
-export const login = (data) => {
-  return async (dispatch) => {
+export const login = (data: { mobile: string; code: string }) => {
+  return async (dispatch: Dispatch) => {
     const res = await request({
       method: "post",
       url: "/authorizations",
@@ -36,7 +40,7 @@ export const login = (data) => {
 
 // 退出登录
 export const logout = () => {
-  return (dispatch) => {
+  return (dispatch: Dispatch) => {
     removeTokenInfo();
     dispatch({
       type: "login/logout",
