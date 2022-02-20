@@ -5,6 +5,7 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom";
+import { Freeze } from "react-freeze";
 import AuthRoute from "router/AuthRoute";
 import DefaultShow from "components/DefaultShow";
 const Layout = React.lazy(() => import("pages/Layout"));
@@ -15,6 +16,7 @@ const Home = React.lazy(() => import("pages/Home"));
 const Profile = React.lazy(() => import("pages/Profile"));
 const Question = React.lazy(() => import("pages/Question"));
 const Video = React.lazy(() => import("pages/Video"));
+const Article = React.lazy(() => import("pages/Article"));
 const rootShow = <div>loading...</div>;
 const layoutShow = (
   <>
@@ -23,6 +25,7 @@ const layoutShow = (
     <DefaultShow />
   </>
 );
+
 export function RootRouter() {
   return (
     <Router>
@@ -30,7 +33,8 @@ export function RootRouter() {
         <Routes>
           <Route path="/*" element={<Navigate to="/home" />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/home/*" element={<Layout />}></Route>
+          <Route path="/home/*" element={<Layout />} />
+          <Route path="/article/:id" element={<Article />} />
           {/* 登录才能访问 */}
           <Route
             path="/home/profile/edit"
@@ -57,7 +61,14 @@ export function LayoutRouter() {
   return (
     <Suspense fallback={layoutShow}>
       <Routes>
-        <Route index element={<Home />} />
+        <Route
+          index
+          element={
+            <Freeze freeze={false}>
+              <Home />
+            </Freeze>
+          }
+        />
         <Route path="/question" element={<Question />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/video" element={<Video />} />

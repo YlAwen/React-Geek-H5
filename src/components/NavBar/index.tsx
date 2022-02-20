@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./index.module.scss";
 import Icon from "components/Icon";
 type Props = {
-  children: string | React.ReactElement;
+  children?: string | React.ReactElement;
   extra?: string | React.ReactElement;
   className?: string;
   leftClick?: () => void;

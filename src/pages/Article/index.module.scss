@@ -1,0 +1,247 @@
+@import "../../assets/styles/hairline.scss";
+
+.root {
+  height: 100%;
+  padding-top: 12.2667vw;
+  :global {
+    .navBar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      background-color: #fff;
+      z-index: 999;
+    }
+    .root-wrapper {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+      z-index: 1;
+    }
+
+    .am-icon-ellipsis {
+      color: #323233;
+    }
+
+    .nav-author {
+      display: flex;
+      text-align: left;
+      align-items: center;
+      color: #3a3948;
+      font-size: 4vw;
+      img {
+        width: 6.4vw;
+        height: 6.4vw;
+        border-radius: 50%;
+      }
+      .name {
+        margin: 0 2.1333vw;
+        padding-right: 2.6667vw;
+        border-right: 0.2667vw solid #bfc2cb;
+        line-height: 2.6667vw;
+      }
+      .follow {
+        color: #de644b;
+      }
+      .followed {
+        color: #ccc;
+      }
+    }
+
+    .wrapper {
+      flex: 1;
+      overflow-y: auto;
+      background-color: #f7f8fa;
+    }
+
+    .article-wrapper {
+      padding: 0 4.2667vw;
+      background-color: #fff;
+    }
+
+    .header {
+      position: relative;
+      padding: 4.8vw 0 3.2vw;
+      @include hairline(bottom, #f0f0f0);
+
+      .title {
+        margin-bottom: 3.2vw;
+        font-size: 6.1333vw;
+        color: #333;
+      }
+
+      .info {
+        height: 3.2vw;
+        margin-bottom: 6.1333vw;
+        line-height: 3.2vw;
+        color: #a5a6ab;
+        font-size: 2.9333vw;
+
+        span {
+          display: inline-block;
+          padding: 0 2.1333vw;
+          border-right: 0.2667vw solid #bfc2cb;
+
+          &:first-child {
+            padding-left: 0;
+          }
+          &:last-child {
+            border-right: 0;
+          }
+        }
+      }
+
+      .author {
+        position: relative;
+        display: flex;
+        align-items: center;
+
+        img {
+          width: 9.0667vw;
+          height: 9.0667vw;
+          margin-right: 3.2vw;
+          object-fit: cover;
+          border-radius: 50%;
+          overflow: hidden;
+        }
+
+        .name {
+          color: #333;
+          font-size: 4vw;
+        }
+
+        .follow {
+          position: absolute;
+          right: 0;
+          height: 7.7333vw;
+          padding: 1.1333vw 4.8vw;
+          border-radius: 4vw;
+          color: #fff;
+          font-size: 3.7333vw;
+          background-color: #fc6627;
+        }
+
+        .followed {
+          color: #a5a6ab;
+          background-color: #f7f8fa;
+        }
+      }
+    }
+
+    .content {
+      width: 100%;
+      padding: 8vw 0 6.6667vw;
+      line-height: 7.2vw;
+      overflow: hidden;
+      color: #595769;
+      font-size: 4.2667vw;
+
+      .content-html {
+        word-break: break-all;
+
+        // 动态内容中的元素
+        pre {
+          font-size: 3.7333vw;
+          white-space: pre-wrap;
+
+          code {
+            white-space: pre;
+
+            &.hljs {
+              display: block;
+              padding: 1.8667vw;
+              overflow-x: auto;
+            }
+          }
+        }
+      }
+
+      img {
+        max-width: 100%;
+      }
+
+      .date {
+        padding-top: 6.6667vw;
+        text-align: right;
+        font-size: 3.2vw;
+        color: #a5a6ab;
+      }
+    }
+
+    .comment {
+      margin-top: 3.2vw;
+      background-color: #fff;
+
+      .comment-header {
+        display: flex;
+        justify-content: space-between;
+        padding: 4.2667vw;
+        font-size: 4.5333vw;
+        font-weight: 500;
+        color: #333;
+
+        span {
+          &:last-child {
+            color: #a5a6ab;
+            font-size: 3.7333vw;
+            font-weight: normal;
+          }
+        }
+      }
+
+      .comment-list {
+        margin-top: 0.8vw;
+
+        .placeholder {
+          height: 0;
+        }
+
+        .list-loading {
+          line-height: 13.0667vw;
+          color: #969799;
+          font-size: 3.2vw;
+          text-align: center;
+        }
+
+        .no-more {
+          line-height: 13.0667vw;
+          color: #969799;
+          font-size: 3.7333vw;
+          text-align: center;
+        }
+      }
+    }
+
+    .drawer {
+      .am-drawer-sidebar {
+        height: 100%;
+      }
+
+      .drawer-sidebar-wrapper {
+        height: 100%;
+        width: 100%;
+        background-color: #fff;
+      }
+    }
+
+    .drawer-right {
+      .am-drawer-sidebar {
+        width: 100%;
+      }
+
+      .drawer-sidebar-wrapper {
+        height: 100%;
+        width: 100%;
+        background-color: #fff;
+        border-radius: 5.3333vw 5.3333vw 0vw 0vw;
+      }
+    }
+
+    .drawer-share {
+      .am-drawer-sidebar {
+        box-shadow: none !important;
+      }
+    }
+  }
+}

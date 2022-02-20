@@ -33,7 +33,7 @@ export default function ArticlelItem({ article }: Props) {
       </div>
       <div className={`article-info ${type === 0 ? "none-mt" : ""}`}>
         <span>{name}</span>
-        <span>{article.comm_count} 评论</span>
+        {/* <span>{article.comm_count} 评论</span> */}
         <span>{date}</span>
         {/* <div className="close">
           <Icon type="iconbtn_essay_close"></Icon>

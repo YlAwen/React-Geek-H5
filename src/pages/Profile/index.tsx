@@ -63,7 +63,7 @@ export default function Profile() {
           </div>
           <div className="count-item">
             <p>{user.like_count || 0}</p>
-            <p>被赞</p>
+            <p>点赞</p>
           </div>
         </div>
         {/* 主功能菜单区域 */}
